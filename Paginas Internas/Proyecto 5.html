@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <title>Calculadora de Expresiones</title>
+  <script lang="javascript">
+    // Función para evaluar la expresión
+    function calcular() {
+      // Obtenemos los operandos y el operador
+      var numero1 = parseFloat(document.getElementById('num1').value);
+      var numero2 = parseFloat(document.getElementById('num2').value);
+      var operador = document.getElementById('operador').value;
+
+      // Variable para almacenar el resultado
+      var resultado;
+
+      // Evaluamos la expresión según el operador
+      switch (operador) {
+        case "+":
+          resultado = numero1 + numero2;
+          document.getElementById('resultado').innerText = "El resultado es: " + resultado;
+          break;
+        case "-":
+          resultado = numero1 - numero2;
+          document.getElementById('resultado').innerText = "El resultado es: " + resultado;
+          break;
+        case "*":
+          resultado = numero1 * numero2;
+          document.getElementById('resultado').innerText = "El resultado es: " + resultado;
+          break;
+        case "/":
+          // Manejo de la división por cero
+          resultado = numero2 !== 0 ? numero1 / numero2 : 0;
+          document.getElementById('resultado').innerText = "El resultado es: " + resultado;
+          break;
+        case "^":
+          resultado = Math.pow(numero1, numero2);
+          document.getElementById('resultado').innerText = "El resultado es: " + resultado;
+          break;
+        default:
+          alert("Operador no válido");
+          return;
+      }
+    }
+  </script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      background-color: rgb(250, 181, 179)
+    }
+
+    h1 {
+      text-align: center;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    input {
+      display: flex;
+      text-align: center;
+      justify-content: center;
+      margin-bottom: 5px;
+      margin-left: 12px;
+      background-color: rgb(243, 223, 204);
+    }
+
+    textarea {
+      resize: none;
+      background-color: rgb(243, 218, 204);
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: x-large;
+      justify-content: center;
+      text-align: center;
+    }
+
+    table {
+      border: 5px solid;
+      width: fit-content;
+    }
+
+    td {
+      align-content: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    button {
+      border: none;
+      color: black;
+      padding: 14px 28px;
+      cursor: pointer;
+      border-radius: 5px;
+      font-size: 20px;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    button:hover {
+      background: #324555;
+      color: white;
+    }
+
+    .back {
+      border: none;
+      color: black;
+      padding: 14px 28px;
+      cursor: pointer;
+      border-radius: 5px;
+      font-size: 20px;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .back {
+      background: #ca5620;
+      color: white;
+    }
+
+    .tabla {
+      display: flex;
+      justify-content: center;
+    }
+
+    .calculo {
+      margin-top: 15px;
+      margin-bottom: 15px;
+      padding: 8px;
+      cursor: pointer;
+    }
+
+    nav {
+      max-width: none;
+      margin: auto;
+      background-color: #29262b;
+      font-size: 20px;
+      margin-top: 0px;
+    }
+
+    .menu-horizontal {
+      list-style: none;
+      display: flex;
+      justify-content: space-around;
+    }
+
+    .menu-horizontal>li>a {
+      display: block;
+      padding: 15px 20px;
+      color: white;
+      text-decoration: none;
+    }
+
+    .menu-horizontal>li:hover {
+      background-color: rgb(219, 72, 14);
+    }
+  </style>
+</head>
+
+<body>
+  <nav>
+    <ul class="menu-horizontal">
+      <li><a href="../index.html">Ejercicio 4.3</a></li>
+      <li><a href="../Paginas Internas/Proyecto 5.html">Ejercicio 4.5</a></li>
+      <li><a href="../Paginas Internas/Proyecto 7.html">Ejercicio 4.7</a></li>
+      <li><a href="../Paginas Internas/Proyecto 9.html">Ejercicio 4.9</a></li>
+    </ul>
+  </nav>
+  <h1>Calculadora de Expresiones</h1>
+  <div class="tabla">
+    <table>
+      <tr>
+        <td>
+          <form>
+            <label for="numero1">Ingresa el primer número: </label>
+            <input type="text" id="num1" />
+            <br />
+            <label for="numero2">Ingresa el segundo número: </label>
+            <input type="text" id="num2" />
+            <br />
+            <label for="operador">Ingresa el operador: </label>
+            <input type="text" id="operador" />
+            <br />
+
+            <button onclick="calcular()" type="button" class="calculo">Calcular</button>
+          </form>
+          <textarea name="" id="resultado" cols="15" rows="6"></textarea>
+        </td>
+      </tr>
+    </table>
+  </div>
+</body>
+
+</html>

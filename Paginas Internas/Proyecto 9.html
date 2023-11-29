@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Determinar Especialidad</title>
+  <script>
+    function determinarEspecialidad() {
+      var puntaje = parseInt(document.getElementById("puntaje").value);
+      let img = document.createElement('img');
+
+
+      if (puntaje >= 90) {
+        document.getElementById('resultado').innerText = "¡Ingresó a la especialidad de Computación!";
+        img.src = '../Imagenes/perro.gif';
+      } else if (puntaje >= 80) {
+        document.getElementById('resultado').innerText = "Ingresó a la especialidad de Enfermería";
+        img.src = '../Imagenes/perro.gif';
+      } else if (puntaje >= 70) {
+        document.getElementById('resultado').innerText = "Ingresó a la especialidad de Prótesis";
+        img.src = '../Imagenes/perro.gif';
+      } else if (puntaje <= 69) {
+        document.getElementById('resultado').innerText = "No ingresó a ninguna :c";
+        img.src = '../Imagenes/perro triste.gif';
+      } else {
+        alert("Ingrese valor -_-")
+      }
+      var celdaImagen = document.getElementById('celdaImagen');
+      celdaImagen.innerHTML = '';
+      celdaImagen.appendChild(img);
+
+      $("button.calculo").hide();
+      $("button.back").show();
+    }
+
+  </script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script>
+    $(document).ready(function () {
+      $("button.calculo").click(function () {
+        $("form").hide();
+      });
+
+      $("button.back").click(function () {
+        location.reload();
+      });
+    });
+  </script>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      background-color: rgb(147, 112, 212)
+    }
+
+    h1 {
+      text-align: center;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    input {
+      display: flex;
+      text-align: center;
+      justify-content: center;
+      margin-bottom: 5px;
+      margin-left: 12px;
+      background-color: rgb(188, 155, 226);
+    }
+
+    textarea {
+      resize: none;
+      background-color: rgb(188, 155, 226);
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: x-large;
+      justify-content: center;
+      text-align: center;
+    }
+
+    table {
+      border: 5px solid;
+      width: fit-content;
+    }
+
+    td {
+      align-content: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    button {
+      border: none;
+      color: black;
+      padding: 14px 28px;
+      cursor: pointer;
+      border-radius: 5px;
+      font-size: 20px;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    button:hover {
+      background: #324555;
+      color: white;
+    }
+
+    .back {
+      border: none;
+      color: black;
+      padding: 14px 28px;
+      cursor: pointer;
+      border-radius: 5px;
+      font-size: 20px;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .back {
+      background: #ca5620;
+      color: white;
+    }
+
+    .tabla {
+      display: flex;
+      justify-content: center;
+    }
+
+    .calculo {
+      margin-top: 15px;
+      margin-bottom: 15px;
+      padding: 8px;
+      cursor: pointer;
+    }
+
+    nav {
+      max-width: none;
+      margin: auto;
+      background-color: #29262b;
+      font-size: 20px;
+      margin-top: 0px;
+    }
+
+    .menu-horizontal {
+      list-style: none;
+      display: flex;
+      justify-content: space-around;
+    }
+
+    .menu-horizontal>li>a {
+      display: block;
+      padding: 15px 20px;
+      color: white;
+      text-decoration: none;
+    }
+
+    .menu-horizontal>li:hover {
+      background-color: rgb(217, 16, 224);
+    }
+  </style>
+</head>
+
+<body>
+  <nav>
+    <ul class="menu-horizontal">
+      <li><a href="../index.html">Ejercicio 4.3</a></li>
+      <li><a href="../Paginas Internas/Proyecto 5.html">Ejercicio 4.5</a></li>
+      <li><a href="../Paginas Internas/Proyecto 7.html">Ejercicio 4.7</a></li>
+      <li><a href="../Paginas Internas/Proyecto 9.html">Ejercicio 4.9</a></li>
+    </ul>
+  </nav>
+  <h1>Determinar Especialidad</h1>
+  <div class="tabla">
+    <table>
+      <tr>
+        <td>
+          <form>
+            <label for="puntaje">Ingresa tu puntaje: </label>
+            <input type="text" id="puntaje" />
+            <br />
+            <button onclick="determinarEspecialidad()" type="button" class="calculo">Calcular</button>
+          </form>
+          <textarea name="" id="resultado" cols="15" rows="5" disabled></textarea>
+        </td>
+      <tr id="celdaImagen">
+        <td>
+          <button class="back" style="display: none;">Regresar</button>
+        </td>
+      </tr>
+      </tr>
+    </table>
+  </div>
+  <button class="back" style="display: none;">Regresar</button>
+</body>
+
+</html>

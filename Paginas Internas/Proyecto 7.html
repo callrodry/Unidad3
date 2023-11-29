@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+
+<head>
+  <title>Calculadora de Financiamiento</title>
+  <script>
+    // Función para calcular el financiamiento
+    function calcularFinanciamiento() {
+      // Obtenemos el monto de la compra
+      var montoCompra = parseFloat(document.getElementById('montoCompra').value);
+
+      // Calculamos el monto con impuestos
+      var montoConImpuestos = montoCompra * 1.1;
+
+      // Solicitamos el tipo de financiamiento
+      var tipoFinanciamiento = parseInt(document.querySelector('input[name="financiamiento"]:checked').value);
+
+      // Definimos las variables según el tipo de financiamiento
+      var porcentajeInteres, porcentajeCuotaInicial, numeroLetras;
+
+      switch (tipoFinanciamiento) {
+        case 1:
+          porcentajeInteres = 60;
+          porcentajeCuotaInicial = 2;
+          numeroLetras = 2;
+          break;
+        case 2:
+          porcentajeInteres = 50;
+          porcentajeCuotaInicial = 4;
+          numeroLetras = 4;
+          break;
+        case 3:
+          porcentajeInteres = 35;
+          porcentajeCuotaInicial = 6;
+          numeroLetras = 6;
+          break;
+      }
+
+      // Calculamos los valores
+      var montoInteres = montoConImpuestos * (porcentajeInteres / 100);
+      var nuevoMontoFactura = montoConImpuestos + montoInteres;
+      var montoCuotaInicial = nuevoMontoFactura * (porcentajeCuotaInicial / 100);
+      var montoLetra = (nuevoMontoFactura - montoCuotaInicial) / numeroLetras;
+
+      document.getElementById('resultado').innerText = "Monto de factura: " + montoConImpuestos +
+        "\n\nMonto de intereses: " + montoInteres +
+        "\n\nNuevo monto de factura: " + nuevoMontoFactura +
+        "\n\nMonto de la cuota inicial: " + montoCuotaInicial +
+        "\n\nMonto de cada letra por pagar: " + montoLetra;
+
+      $("button.calculo").hide();
+      $("button.back").show();
+    }
+  </script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script>
+    $(document).ready(function () {
+      $("button.calculo").click(function () {
+        $("form").hide();
+      });
+
+      $("button.back").click(function () {
+        location.reload();
+      });
+    });
+  </script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      background-color: rgb(179, 250, 250)
+    }
+
+    h1 {
+      text-align: center;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    input {
+      display: flex;
+      text-align: center;
+      justify-content: center;
+      margin-bottom: 5px;
+      margin-left: 27px;
+      background-color: rgb(204, 243, 243);
+    }
+
+    .radio {
+      margin-left: 115px;
+    }
+
+    textarea {
+      resize: vertical;
+      background-color: rgb(204, 243, 243);
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: large;
+      justify-content: center;
+      text-align: center;
+    }
+
+    table {
+      border: 5px solid;
+      width: fit-content;
+    }
+
+    td {
+      align-content: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    button {
+      border: none;
+      color: black;
+      padding: 14px 28px;
+      cursor: pointer;
+      border-radius: 5px;
+      font-size: 20px;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    button:hover {
+      background: #324555;
+      color: white;
+    }
+
+    .back {
+      border: none;
+      color: black;
+      padding: 14px 28px;
+      cursor: pointer;
+      border-radius: 5px;
+      font-size: 20px;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .back {
+      background: #ca5620;
+      color: white;
+    }
+
+    .tabla {
+      display: flex;
+      justify-content: center;
+    }
+
+    .calculo {
+      margin-top: 15px;
+      margin-bottom: 15px;
+      padding: 8px;
+      cursor: pointer;
+    }
+
+    nav {
+      max-width: none;
+      margin: auto;
+      background-color: #29262b;
+      font-size: 20px;
+      margin-top: 0px;
+    }
+
+    .menu-horizontal {
+      list-style: none;
+      display: flex;
+      justify-content: space-around;
+    }
+
+    .menu-horizontal>li>a {
+      display: block;
+      padding: 15px 20px;
+      color: white;
+      text-decoration: none;
+    }
+
+    .menu-horizontal>li:hover {
+      background-color: rgb(16, 224, 137);
+    }
+  </style>
+</head>
+
+<body>
+  <nav>
+    <ul class="menu-horizontal">
+      <li><a href="../index.html">Ejercicio 4.3</a></li>
+      <li><a href="../Paginas Internas/Proyecto 5.html">Ejercicio 4.5</a></li>
+      <li><a href="../Paginas Internas/Proyecto 7.html">Ejercicio 4.7</a></li>
+      <li><a href="../Paginas Internas/Proyecto 9.html">Ejercicio 4.9</a></li>
+    </ul>
+  </nav>
+  <h1>Calculadora de Financiamiento</h1>
+  <div class="tabla">
+    <table border cellspacing="5">
+      <tr>
+        <th>Tipo de financiamiento</th>
+        <th>% Interés</th>
+        <th>% Cuota inicial</th>
+        <th>Número de letras</th>
+      </tr>
+      <tr>
+        <td>1</td>
+        <td>5</td>
+        <td>60</td>
+        <td>2</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>10</td>
+        <td>50</td>
+        <td>4</td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td>15</td>
+        <td>35</td>
+        <td>6</td>
+      </tr>
+    </table>
+  </div>
+  <br>
+  <br>
+  <div class="tabla">
+    <table>
+      <tr>
+        <td>
+          <form>
+            <label for="montoCompra">Ingresa el monto de compra: </label>
+            <input type="text" id="montoCompra" />
+            <br />
+            <label for="financiamiento">Elige el tipo de financiamiento: </label>
+            <br>
+            <label for="financiamiento">2 Letras</label>
+            <input class="radio" type="radio" id="financiamiento1" name="financiamiento" value="1" />
+            <label for="financiamiento">4 Letras</label>
+            <input class="radio" type="radio" id="financiamiento2" name="financiamiento" value="2" />
+            <label for="financiamiento">6 Letras</label>
+            <input class="radio" type="radio" id="financiamiento3" name="financiamiento" value="3" />
+            <br />
+            <button onclick="calcularFinanciamiento()" type="button" class="calculo">Calcular</button>
+          </form>
+          <textarea disabled name="resultado" id="resultado" cols="24" rows="7"></textarea>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <button class="back" style="display: none;">Regresar</button>
+</body>
+
+</html>

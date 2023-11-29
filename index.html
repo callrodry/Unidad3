@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+
+<head>
+  <title>Calculadora de Salario Neto</title>
+  <script>
+    // Función para calcular el salario neto
+    function calcularSalarioNeto() {
+      // Obtenemos el número de horas trabajadas desde el formulario
+      var horasTrabajadas = parseFloat(
+        document.getElementById("horasTrabajadas").value
+      );
+
+      // Creamos una fila para cada iteración
+      var fila = document.createElement("tr");
+
+      // Calculamos el salario bruto
+      var salarioBruto = calcularSalarioBruto(horasTrabajadas, 10, 15);
+
+      // Calculamos los impuestos
+      var impuestos = calcularImpuestos(salarioBruto, 200, 0.25, 0.35);
+
+      // Calculamos el salario neto
+      var salarioNeto = salarioBruto - impuestos;
+
+      // Mostramos los resultados en un textarea
+      fila.innerHTML = `
+                <td>${horasTrabajadas}</td>
+                <td>${salarioBruto.toFixed(2)}</td>
+                <td>${impuestos.toFixed(2)}</td>
+                <td>${salarioNeto.toFixed(2)}</td>
+            `;
+
+      // Agregamos la fila a la tabla
+      document.getElementById("resultadosTabla").appendChild(fila);
+    }
+
+    // Función para calcular el salario bruto
+    function calcularSalarioBruto(
+      horasTrabajadas,
+      tarifaNormal,
+      tarifaExtra
+    ) {
+      var horasNormales = Math.min(horasTrabajadas, 40);
+      var horasExtras = Math.max(horasTrabajadas - 40, 0);
+      return horasNormales * tarifaNormal + horasExtras * tarifaExtra;
+    }
+
+    // Función para calcular los impuestos
+    function calcularImpuestos(
+      salarioBruto,
+      limiteLibreImpuestos,
+      tasaImpuestos25,
+      tasaImpuestos35
+    ) {
+      var impuestos = 0;
+
+      if (salarioBruto > limiteLibreImpuestos) {
+        impuestos +=
+          Math.min(limiteLibreImpuestos, salarioBruto) * tasaImpuestos25;
+        impuestos +=
+          Math.max(salarioBruto - limiteLibreImpuestos, 0) * tasaImpuestos35;
+      }
+
+      return impuestos;
+    }
+  </script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      background-color: rgb(250, 179, 206)
+    }
+
+    h1 {
+      text-align: center;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    input {
+      display: flex;
+      text-align: center;
+      justify-content: center;
+      margin-bottom: 5px;
+      background-color: rgb(240, 204, 243);
+    }
+
+    table {
+      border: 5px solid;
+      width: fit-content;
+    }
+
+    td {
+      align-content: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    button {
+      border: none;
+      color: black;
+      padding: 14px 28px;
+      cursor: pointer;
+      border-radius: 5px;
+      font-size: 20px;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    button:hover {
+      background: #324555;
+      color: white;
+    }
+
+    .back {
+      border: none;
+      color: black;
+      padding: 14px 28px;
+      cursor: pointer;
+      border-radius: 5px;
+      font-size: 20px;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .back {
+      background: #ca5620;
+      color: white;
+    }
+
+    .tabla {
+      display: flex;
+      justify-content: center;
+    }
+
+    .calculo {
+      margin-top: 15px;
+      margin-bottom: 15px;
+      padding: 8px;
+      cursor: pointer;
+    }
+
+    nav {
+      max-width: none;
+      margin: auto;
+      background-color: #29262b;
+      font-size: 20px;
+      margin-top: 0px;
+    }
+
+    .menu-horizontal {
+      list-style: none;
+      display: flex;
+      justify-content: space-around;
+    }
+
+    .menu-horizontal>li>a {
+      display: block;
+      padding: 15px 20px;
+      color: white;
+      text-decoration: none;
+    }
+
+    .menu-horizontal>li:hover {
+      background-color: rgba(224, 16, 78, 0.644);
+    }
+  </style>
+</head>
+
+<body>
+  <nav>
+    <ul class="menu-horizontal">
+      <li><a href="index.html">Ejercicio 4.3</a></li>
+      <li><a href="Paginas Internas/Proyecto 5.html">Ejercicio 4.5</a></li>
+      <li><a href="Paginas Internas/Proyecto 7.html">Ejercicio 4.7</a></li>
+      <li><a href="Paginas Internas/Proyecto 9.html">Ejercicio 4.9</a></li>
+    </ul>
+  </nav>
+
+  <h1>Calculadora de Salario Neto</h1>
+  <div class="tabla">
+    <table>
+      <tr>
+        <td>
+          <form id="formulario">
+            <label for="horasTrabajadas">Horas Trabajadas:</label>
+            <input type="number" id="horasTrabajadas" name="horasTrabajadas" required />
+            <button type="button" onclick="calcularSalarioNeto()">Calcular</button>
+          </form>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <br>
+
+  <div class="tabla">
+    <table border cellspacing="5">
+      <thead>
+        <tr>
+          <th>Horas Trabajadas</th>
+          <th>Salario Bruto</th>
+          <th>Impuestos</th>
+          <th>Salario Neto</th>
+        </tr>
+      </thead>
+      <tbody id="resultadosTabla"></tbody>
+    </table>
+  </div>
+</body>
+
+</html>
